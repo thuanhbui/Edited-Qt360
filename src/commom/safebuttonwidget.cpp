@@ -12,6 +12,13 @@ SafeButtonWidget::SafeButtonWidget(QWidget *parent) :
 
 void SafeButtonWidget::setIconsInfo(const QString &animIcons, int animNum, const QString &normalIcons, int normalNum)
 {
+    if (animIcons.isNull() || normalIcons.isNull()) {
+        return;
+    } else {
+        animNum++;
+        normalNum++;
+    }
+
     m_staticButton = new StaticButton(normalIcons, normalNum, this);
     m_staticButton->setAttribute(Qt::WA_TransparentForMouseEvents); //屏蔽子窗口事件
     m_dynamicWidget = new DynamicWidget(this);

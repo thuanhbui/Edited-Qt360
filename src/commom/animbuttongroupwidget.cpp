@@ -13,6 +13,9 @@ void AnimButtonGroupWidget::setButtonList(const QList<QString> &list)
     QSignalMapper *clickMapper = new QSignalMapper(this);
     QSignalMapper *enterMapper = new QSignalMapper(this);
     QSignalMapper *leaveMapper = new QSignalMapper(this);
+    if (list.isEmpty()) {
+        return;
+    }
     for(int i=0; i< list.size(); i++)
     {
         StaticButton *button = new StaticButton(list.at(i));

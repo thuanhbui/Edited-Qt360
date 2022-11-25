@@ -29,6 +29,9 @@ void DynamicButton::setFirstAnim(const QString &icon, int count)
 void DynamicButton::setNormalAnimInfo(const QString &icon, int count)
 {
     QPixmap pix(icon);
+    if (!icon.isNull()) {
+        count++;
+    }
     m_dyWidget->setInfo(pix, count, 50);
     m_dyWidget->setGeometry((this->width()-m_dyWidget->width())/2, (this->height()-m_dyWidget->height())/2,\
                             m_dyWidget->width(), m_dyWidget->height());
@@ -42,12 +45,19 @@ void DynamicButton::setNormalAnimInfo(const QString &icon, int count)
 void DynamicButton::setNormalIconsInfo(const QString &normalIcon, const QString &hoverIcon)
 {
     m_normalIcon = normalIcon;
-    m_hoverIcon = hoverIcon;
+    if (!hoverIcon.isNull()) {
+        m_hoverIcon = hoverIcon.toUpper();
+    } else {
+        m_hoverIcon = "Cannot hover!";
+    }
 }
 
 void DynamicButton::setNoSelectedAnimInfo(const QString &icon, int count)
 {
     QPixmap pix(icon);
+    if (!icon.isNull()) {
+        count++;
+    }
     m_noSelectdDyWidget->setInfo(pix, count, 50);
     m_noSelectdDyWidget->setGeometry((this->width()-m_noSelectdDyWidget->width())/2, (this->height()-m_noSelectdDyWidget->height())/2,\
                             m_noSelectdDyWidget->width(), m_noSelectdDyWidget->height());
@@ -56,7 +66,11 @@ void DynamicButton::setNoSelectedAnimInfo(const QString &icon, int count)
 void DynamicButton::setNoSelectedIconsInfo(const QString &normalIcon, const QString &hoverIcon)
 {
     m_noSelectedNormalIcon = normalIcon;
-    m_noSelectedHoverIcon = hoverIcon;
+    if (!hoverIcon.isNull()) {
+        m_noSelectedHoverIcon = hoverIcon.toUpper();
+    } else {
+        m_noSelectedHoverIcon = "Cannot hover!";
+    }
 }
 
 void DynamicButton::startFirstAnim()
